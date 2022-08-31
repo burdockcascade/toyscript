@@ -1,0 +1,13 @@
+function main(args) {
+
+    var a = 1
+    var b = 4.3
+    var c = "hello world"
+    var d = true
+    var e = false
+
+}
+
+function speak(msg) {
+
+}

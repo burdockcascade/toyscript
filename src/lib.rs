@@ -1,16 +1,19 @@
-pub fn add(left: usize, right: usize) -> usize {
-    left + right
-}
+use log::{LevelFilter};
+use simplelog::{Config, SimpleLogger};
+use crate::generator::generate;
 
-#[cfg(test)]
-mod tests {
-    use super::*;
+mod frontend;
+mod generator;
 
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
-    }
+pub fn compile_and_run(program: &str) -> Result<i32, String> {
+
+    let _ = SimpleLogger::init(LevelFilter::Debug, Config::default());
+
+    let script = frontend::parser::script(program).map_err(|e| e.to_string())?;
+
+    generate(script);
+
+    Ok(1)
 }
 
 
